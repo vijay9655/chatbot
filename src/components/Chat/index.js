@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-
 import ChatBot from "react-simple-chatbot";
 import { ChatContainer } from "./ChatElement";
 import { ThemeProvider } from "styled-components";
@@ -90,29 +89,35 @@ const chathandle=()=>{
   // document.getElementById(chat').style.display='none'
 
 }
+const config = {
+  botAvatar: "./chatbot.jpg",
+  floating: true,
+};
   return (
-    <>
-      
+ 
+      <>
       <ChatContainer>
         <ThemeProvider theme={theme} >
           
           <div style={{margin:'0% 0% 0% 70%' ,cursor:'pointer'}}>
-            {toggle===true?
-          <div id="chat">
-          {/* <Button type="primary" shape="round">Chat bot</Button> */}
-          {/* <Button type="primary" shape="round" icon={<img  src="./chatbot.jpg"/>} size={"small"}></Button> */}
-          <img onClick={chathandle} style={{borderRadius:'50%',margin:'450% 0% 0% 80%'}} width={100} height={100} src="./chatbot.jpg"/>
-          </div>:
+           
+        
           <div>
-          <ChatBot 
+         
+          <ChatBot   
             headerTitle="Outstagers ChatRoom"
+            {...config}
             speechSynthesis={{ enable: false, lang: "en" }}
-            steps={steps}  /> </div>}
+            steps={steps}  />
+               
+          
+            
+            </div>
             </div>
         </ThemeProvider>
       </ChatContainer>
     
-    </>
+   </>
   );
 }
 
