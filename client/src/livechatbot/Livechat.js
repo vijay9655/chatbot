@@ -25,7 +25,7 @@ function Livechat({username,room,socket}) {
             <input type='text' placeholder='hi...'
             onChange={(e)=>{setCurrentmsg(e.target.value)}} 
             />
-            <button onClick={sendMessage}>&#9658</button>
+            <button onClick={sendMessage}>&#9658;</button>
         </div>
     </div>
   )
