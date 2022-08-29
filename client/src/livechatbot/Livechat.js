@@ -9,8 +9,7 @@ function Livechat({username,room,socket}) {
           author:username,
           message:currentmsg,
           time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
-    await socket.emit("send_message",messagedata)    
-
+          
         }
       }
     
