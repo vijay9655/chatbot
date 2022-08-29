@@ -40,6 +40,13 @@ io.on("connection",(socket)=>{
         console.log("user join room",socket.id,' room id',data);
         socket.join(data)
     })
+    socket.on("send_message",(data)=>{
+        console.log(data);
+    });
+    socket.on("disconnect",()=>{
+        console.log("Userdisconnect",socket.id);
+    })
+
 })
 
 
