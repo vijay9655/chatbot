@@ -1,12 +1,13 @@
 
 import './App.css';
-import Chat from './components/Chat';
+import Chat from '../../client/src/index/';
 
 function App() {
   return (
     <div className="App">
    
-      <Chat/>
+      {/* <Chat/> */}
+      
    
     </div>
   );
