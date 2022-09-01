@@ -1,12 +1,13 @@
 
 import './App.css';
-import Chat from '../../client/src/index/';
+import Chat from './chatbot/Chatbot';
 
 function App() {
   return (
     <div className="App">
    
-      {/* <Chat/> */}
+      <Chat/>
+ 
       
    
     </div>
