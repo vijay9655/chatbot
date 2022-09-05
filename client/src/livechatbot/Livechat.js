@@ -12,7 +12,8 @@ function Livechat({username,room,socket}) {
           message:currentmsg,
           time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
     await socket.emit("send_message",messagedata) 
-    setMessageList((list) => [...list, messagedata]);
+    setMessageList( {...messageList, currentmsg});
+    console.log('messagelist',messageList);
     setCurrentmsg("");   
 
         }
@@ -32,7 +33,8 @@ function Livechat({username,room,socket}) {
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
+         
+          {/* {messageList.map((messageContent) => {
             return (
               <div
                 className="message"
@@ -49,7 +51,7 @@ function Livechat({username,room,socket}) {
                 </div>
               </div>
             );
-          })}
+          })} */}
         </ScrollToBottom>
       </div>
       <div className="chat-footer">

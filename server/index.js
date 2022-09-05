@@ -23,7 +23,6 @@ app.use('/users',apiroutes)
 
 
 
-
 //server side client connection part
 app.use(cors());
 const server=http.createServer(app);
@@ -38,7 +37,7 @@ io.on("connection",(socket)=>{
     console.log(`user connected :${socket.id}`);
     socket.on("join_room",(data)=>{
         console.log("user join room",socket.id,' room id',data);
-        socket.join(data)
+        socket.join(data);
     })
     socket.on("send_message",(data)=>{
         socket.to(data.room).emit("receive_message",data)
