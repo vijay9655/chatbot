@@ -1,9 +1,10 @@
 import React, { useState,useEffect } from 'react'
-import '../App.css'
+import './livechat.css'
 import ScrollToBottom from "react-scroll-to-bottom";
 function Livechat({username,room,socket}) {
     const [currentmsg, setCurrentmsg] = useState()
     const [messageList,setMessageList]=useState([]);
+    const [receivemessage,setReceivemessage]=useState([])
     const sendMessage=async()=>{
       if(currentmsg !==''){
         const messagedata={
@@ -12,8 +13,8 @@ function Livechat({username,room,socket}) {
           message:currentmsg,
           time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
     await socket.emit("send_message",messagedata) 
-    setMessageList( {...messageList, currentmsg});
-    console.log('messagelist',messageList);
+    setMessageList((list) => [...list, messagedata]);
+    console.log("messagedata",messagedata);
     setCurrentmsg("");   
 
         }
@@ -21,26 +22,37 @@ function Livechat({username,room,socket}) {
       useEffect(() => {
               socket.on("receive_message",(data)=>{
                  console.log('receive_message',data);
+                 setMessageList((list) => [...list, data]);
+                 
+
               })
         
       }, [socket])
       
+useEffect(() => {
+  console.log('received msg',messageList);
+  
+
+
+}, )
+
     
   return (
     <div className="chat-window">
+     
       <div className="chat-header">
-        <p>Live Chat</p>
+      
+        <p>{username} &nbsp;&nbsp;&nbsp;&nbsp; Live Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
-         
-          {/* {messageList.map((messageContent) => {
+          {messageList.map((messageContent) => {
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
+                id={username === messageContent.author ? "other" : "you"}
               >
-                <div>
+               {username === messageContent.author?  <div>
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
@@ -48,17 +60,25 @@ function Livechat({username,room,socket}) {
                     <p id="time">{messageContent.time}</p>
                     <p id="author">{messageContent.author}</p>
                   </div>
-                </div>
+                </div>:<div>
+                  <div className="message-content">
+                    <p>{messageContent.message}</p>
+                  </div>
+                  <div className="message-meta">
+                    <p id="time">{messageContent.time}</p>
+                    <p id="author">{messageContent.author}</p>
+                  </div>
+                </div>}
               </div>
             );
-          })} */}
+          })}
         </ScrollToBottom>
       </div>
       <div className="chat-footer">
         <input
           type="text"
           value={currentmsg}
-          placeholder="Hey..."
+          placeholder="Write your message here..."
           onChange={(event) => {
             setCurrentmsg(event.target.value);
           }}
