@@ -4,7 +4,6 @@ import ScrollToBottom from "react-scroll-to-bottom";
 function Livechat({username,room,socket}) {
     const [currentmsg, setCurrentmsg] = useState()
     const [messageList,setMessageList]=useState([]);
-    const [receivemessage,setReceivemessage]=useState([])
     const sendMessage=async()=>{
       if(currentmsg !==''){
         const messagedata={
@@ -42,7 +41,7 @@ useEffect(() => {
      
       <div className="chat-header">
       
-        <p>{username} &nbsp;&nbsp;&nbsp;&nbsp; Live Chat</p>
+        <p style={{color:'black'}}>{username} &nbsp;&nbsp;&nbsp;&nbsp; Live Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">

@@ -114,7 +114,7 @@
   
   .chat-window .chat-body {
     height: calc(450px - (45px + 70px));
-    border: 1px solid #263238;
+    border: 1px solid #c4c4c4;
     background: #fff;
   
     position: relative;
@@ -192,7 +192,7 @@
   
   .chat-window .chat-footer {
     height: 40px;
-    border: 1px solid #263238;
+    border: 1px solid #c4c4c4;  
     border-top: none;
     display: flex;
   }
