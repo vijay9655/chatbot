@@ -33,8 +33,6 @@ const config = {
             question:
             "tell about queries?",
             answer: "About Websites,products,",
-
-          
             id: 2,
           },
         ],

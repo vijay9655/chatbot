@@ -41,6 +41,7 @@ class MessageParser {
     }
   else  if (lowercase.includes("contacts") || lowercase.includes("contact") || lowercase.includes("contact developing product team")){
      this.actionProvider.contactagent()
+     
     }
 else{
   this.actionProvider.contactagent()

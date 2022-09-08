@@ -1,3 +1,5 @@
+
+
 class ActionProvider {
   constructor(createChatBotMessage, setStateFunc) {
     this.createChatBotMessage = createChatBotMessage;
@@ -34,6 +36,7 @@ contactagent=()=>{
     widget:'contacts'
   });
   this.addMessageToState(message);
+  
 }
   handleJavascriptQuiz = () => {
     const message = this.createChatBotMessage(
@@ -51,6 +54,7 @@ contactagent=()=>{
       ...prevState,
       messages: [...prevState.messages, message],
     }));
+    
   };
 }
 

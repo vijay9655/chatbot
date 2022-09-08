@@ -30,7 +30,7 @@ function App() {
       <Livechat socket={socket} username={username} room={room}/>
         
       </div> */}
-      <Chatbott/>
+      {/* <Chatbott/> */}
        <div className="App">
       {!showChat ? (
         <div className="joinChatContainer">

@@ -4,7 +4,9 @@ import ActionProvider from "./ActionProvider";
 import MessageParser from "./MessageParser";
 import Chatbot from "react-chatbot-kit";
 
-function Chatbott() {
+function Chatbott(props) {
+  
+
   return (
     <div>  <Chatbot
         
