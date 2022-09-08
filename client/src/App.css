@@ -1,9 +1,10 @@
 .App {
-  text-align: center;
+  text-align: end;
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
+  
 }
 

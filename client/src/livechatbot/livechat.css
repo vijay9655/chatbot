@@ -95,7 +95,8 @@
   }
   
   .chat-window p {
-    margin: 0;
+     margin: 0;
+    /* float: right; */
   }
   .chat-window .chat-header {
     height: 45px;

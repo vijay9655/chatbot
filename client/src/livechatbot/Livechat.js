@@ -14,7 +14,7 @@ function Livechat({username,room,socket}) {
       if(currentmsg !==''){
         const lowercase = currentmsg.toLowerCase();
         console.log('message user',currentmsg);
-        if((lowercase.includes('hi') || lowercase.includes('hello')|| lowercase.includes('hey'))&&(username!='agent')){
+        if((lowercase.includes('hi') || lowercase.includes('hello')|| lowercase.includes('hey'))&&(username!=='agent')){
            messagedata={
             room:room,
             author:username,
@@ -37,7 +37,7 @@ function Livechat({username,room,socket}) {
         //     setMessageList((list)=>[...list,{room:room,author:'agent',message:`${currentmsg}!,How i can help you?`}])
         //     console.log('hiiii');
         // }
-        else if((lowercase.includes('help') || lowercase.includes('connect agent') || lowercase.includes('connect with agent')||lowercase.includes('yes'))&&(username!='agent')){
+        else if((lowercase.includes('help') || lowercase.includes('connect agent') || lowercase.includes('connect with agent')||lowercase.includes('yes'))&&(username!=='agent')){
           messagedata={
             room:room,
             author:username,
@@ -57,7 +57,7 @@ function Livechat({username,room,socket}) {
             setMessageList((list) => [...list, messagedata]);
             setMessageList((list)=>[...list,{room:room,author:'agent',message:`please wait connect to agent.....`}]) 
         }
-        else if((lowercase.includes('products') ||lowercase.includes('develop') || lowercase.includes('products developed'))&&(username!='agent')){
+        else if((lowercase.includes('products') ||lowercase.includes('develop') || lowercase.includes('products developed'))&&(username!=='agent')){
           messagedata={
             room:room,
             author:username,
@@ -67,7 +67,7 @@ function Livechat({username,room,socket}) {
             setMessageList((list) => [...list, messagedata]);
             setMessageList((list)=>[...list,{room:room,author:'agent',message:`storyflics , other websites`}]) 
         }
- else if((lowercase.includes('tell about website') || lowercase.includes(' about websites') || lowercase.includes('website details') || lowercase.includes('your websites '))&&(username!='agent')){
+ else if((lowercase.includes('tell about website') || lowercase.includes(' about websites') || lowercase.includes('website details') || lowercase.includes('your websites '))&&(username!=='agent')){
   messagedata={
     room:room,
     author:username,
@@ -78,7 +78,7 @@ function Livechat({username,room,socket}) {
     setMessageList((list)=>[...list,{room:room,author:'agent',message:`It is a service/product based website offering. We are developing websites are whatsapp,chatbot,storyflics`}]) 
 }
 
-else if((lowercase.includes('years') && lowercase.includes('making products') || lowercase.includes('company making product'))&&(username!='agent') ){
+else if((lowercase.includes('years') && lowercase.includes('making products') || lowercase.includes('company making product'))&&(username!=='agent') ){
   messagedata={
     room:room,
     author:username,
@@ -88,7 +88,7 @@ else if((lowercase.includes('years') && lowercase.includes('making products') ||
     setMessageList((list) => [...list, messagedata]);
     setMessageList((list)=>[...list,{room:room,author:'agent',message:`2 years`}])
 }
-else if ((lowercase.includes("contacts") || lowercase.includes("contact") || lowercase.includes("contact developing product team"))&&(username!='agent')){
+else if ((lowercase.includes("contacts") || lowercase.includes("contact") || lowercase.includes("contact developing product team"))&&(username!=='agent')){
   messagedata={
     room:room,
     author:username,

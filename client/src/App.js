@@ -8,12 +8,20 @@ const socket=io.connect("http://localhost:3001");
 
 function App() {
   const [showChat, setShowChat] = useState(false);
-  const [username,setUsername]=useState("")
-  const [room,setRoom]=useState("")
+  const [showChat1, setShowChat1] = useState(false);
+
+  const [username,setUsername]=useState('')
+  const [room,setRoom]=useState('123')
+  const joinroom1=()=>{
+    setShowChat(true); 
+
+  }
    const joinroom=()=>{
     if(username !=='' && room !==''){
       socket.emit('join_room',room)
-      setShowChat(true);
+      
+      setShowChat1(!showChat1); 
+    
 
     }
    }
@@ -31,7 +39,7 @@ function App() {
         
       </div> */}
       {/* <Chatbott/> */}
-       <div className="App">
+       {/* <div className="App">
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>Join Live Chat</h3>
@@ -54,7 +62,19 @@ function App() {
       ) : (
         <Livechat socket={socket} username={username} room={room} />
       )}
-    </div>
+    </div> */}
+    {!showChat ?<div>
+      <img onClick={joinroom1} style={{width:'30%',margin:'90% 0% 0% 170%'}} src="./chatbot.jpg" />
+    </div>:!showChat1?<div className="joinChatContainer">
+          
+          <input
+            type="text"
+            placeholder="Name..."
+            onChange={(event) => {
+              setUsername(event.target.value);
+            }}
+          />
+           <button onClick={joinroom}>Join A Room</button></div>:<div> <Livechat socket={socket} username={username} room={room} /></div>}
     </div>
   );
 }
