@@ -22,7 +22,7 @@ function Livechat({username,room,socket}) {
             time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
             await socket.emit("send_message",messagedata) 
             setMessageList((list) => [...list, messagedata]);
-            setMessageList((list)=>[...list,{room:room,author:'agent',message:`${currentmsg}!,How i can help you tell here?`}])
+            setMessageList((list)=>[...list,{room:room,author:'agent',message:`${currentmsg.toUpperCase()}!,How i can help you tell here?`}])
             console.log('hiiii');
 
         }
@@ -37,7 +37,7 @@ function Livechat({username,room,socket}) {
         //     setMessageList((list)=>[...list,{room:room,author:'agent',message:`${currentmsg}!,How i can help you?`}])
         //     console.log('hiiii');
         // }
-        else if((lowercase.includes('help') || lowercase.includes('connect agent') || lowercase.includes('connect with agent')||lowercase.includes('yes'))&&(username!=='agent')){
+        else if((lowercase.includes('help') || lowercase.includes('connect agent') || lowercase.includes('connect with agent'))&&(username!=='agent')){
           messagedata={
             room:room,
             author:username,
@@ -47,17 +47,18 @@ function Livechat({username,room,socket}) {
             setMessageList((list) => [...list, messagedata]);
             setMessageList((list)=>[...list,{room:room,author:'agent',message:`Are you connect with agent?`}])            
         }
-        else if((lowercase.includes('yes'))&&(username!='agent')){
+        else if((lowercase.includes('yes'))&&(username!=='agent')){
           messagedata={
             room:room,
             author:username,
             message:currentmsg,
             time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
+
             await socket.emit("send_message",messagedata) 
             setMessageList((list) => [...list, messagedata]);
             setMessageList((list)=>[...list,{room:room,author:'agent',message:`please wait connect to agent.....`}]) 
         }
-        else if((lowercase.includes('products') ||lowercase.includes('develop') || lowercase.includes('products developed'))&&(username!=='agent')){
+        else if((lowercase.includes('products') || lowercase.includes('develop') || lowercase.includes('products developed'))&&(username!=='agent')){
           messagedata={
             room:room,
             author:username,
@@ -78,7 +79,7 @@ function Livechat({username,room,socket}) {
     setMessageList((list)=>[...list,{room:room,author:'agent',message:`It is a service/product based website offering. We are developing websites are whatsapp,chatbot,storyflics`}]) 
 }
 
-else if((lowercase.includes('years') && lowercase.includes('making products') || lowercase.includes('company making product'))&&(username!=='agent') ){
+else if((lowercase.includes('years') && lowercase.includes('making product') || lowercase.includes('company making product'))&&(username!=='agent') ){
   messagedata={
     room:room,
     author:username,
@@ -137,7 +138,7 @@ console.log('sending input msg',currentmsg);
      
       <div className="chat-header">
       
-        <p style={{color:'black'}}>{username} &nbsp;&nbsp;&nbsp;&nbsp; Live Chat</p>
+        <p style={{color:'black'}}>{username} &nbsp;&nbsp;&nbsp;&nbsp;  Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
