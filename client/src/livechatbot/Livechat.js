@@ -4,17 +4,45 @@ import ScrollToBottom from "react-scroll-to-bottom";
 function Livechat({username,room,socket}) {
   let messagedata;
     const [currentmsg, setCurrentmsg] = useState()
+    const [livechats,setLivechats] = useState(false)
     const [messageList,setMessageList]=useState([
       
 {room: '1234', author: 'agent', message: 'welcome to our website!', time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes()},
 {room: '1234', author: 'agent', message: 'Hi!,What is your name?', time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes()}
 
     ]);
+
+    const sendMessage1 =async()=>{
+      console.log('send message 2');
+
+      messagedata={
+        room:room,
+        author:username,
+        message:currentmsg,
+        time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
+        await socket.emit("send_message",messagedata) 
+        setMessageList((list) => [...list, messagedata]);     
+        // setMessageList((list)=>[...list,{room:room,author:'agent',message:`connected successfully...`}])
+        // setMessageList((list)=>[...list,{room:room,author:'agent',message:`Hi ${username.toUpperCase()} ,...`}])
+
+    
+
+
+    setCurrentmsg("");   
+
+
+    }
+    
     const sendMessage=async()=>{
+      console.log('send message 1 ');
+
       if(currentmsg !==''){
+
         const lowercase = currentmsg.toLowerCase();
+        
         console.log('message user',currentmsg);
-        if((lowercase.includes('hi') || lowercase.includes('hello')|| lowercase.includes('hey'))&&(username!=='agent')){
+      
+       if((lowercase.includes('hi') || lowercase.includes('hello')|| lowercase.includes('hey')|| lowercase.includes(username)) &&(username!=='agent')){
            messagedata={
             room:room,
             author:username,
@@ -22,7 +50,7 @@ function Livechat({username,room,socket}) {
             time:new Date(Date.now()).getHours()+":"+new Date(Date.now()).getMinutes(),}
             await socket.emit("send_message",messagedata) 
             setMessageList((list) => [...list, messagedata]);
-            setMessageList((list)=>[...list,{room:room,author:'agent',message:`${currentmsg.toUpperCase()}!,How i can help you tell here?`}])
+            setMessageList((list)=>[...list,{room:room,author:'agent',message:`HI, ${username.toUpperCase()}!, How i can help you tell here?`}]) 
             console.log('hiiii');
 
         }
@@ -48,6 +76,8 @@ function Livechat({username,room,socket}) {
             setMessageList((list)=>[...list,{room:room,author:'agent',message:`Are you connect with agent?`}])            
         }
         else if((lowercase.includes('yes'))&&(username!=='agent')){
+          setLivechats(!livechats)
+          console.log('live chat2', livechats);
           messagedata={
             room:room,
             author:username,
@@ -56,7 +86,7 @@ function Livechat({username,room,socket}) {
 
             await socket.emit("send_message",messagedata) 
             setMessageList((list) => [...list, messagedata]);
-            setMessageList((list)=>[...list,{room:room,author:'agent',message:`please wait connect to agent.....`}]) 
+            setMessageList((list)=>[...list,{room:room,author:'agent',message:`connected successfully..... tell here queries?.`}]) 
         }
         else if((lowercase.includes('products') || lowercase.includes('develop') || lowercase.includes('products developed'))&&(username!=='agent')){
           messagedata={
@@ -126,11 +156,10 @@ else if ((lowercase.includes("contacts") || lowercase.includes("contact") || low
       }, [socket])
       
 useEffect(() => {
-  console.log('receivedlist msg',messageList);
-  
-console.log('sending input msg',currentmsg);
+ console.log('live chat move',livechats);
 
-}, )
+},[livechats] )
+
 
     
   return (
@@ -170,6 +199,8 @@ console.log('sending input msg',currentmsg);
           })}
         </ScrollToBottom>
       </div>
+      <div>
+      {!livechats===true?
       <div className="chat-footer">
         <input
           type="text"
@@ -182,7 +213,19 @@ console.log('sending input msg',currentmsg);
             event.key === "Enter" && sendMessage();
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        <button onClick={sendMessage}>&#9658;</button></div>:<div className="chat-footer">
+        <input
+        type="text"
+        value={currentmsg}
+        placeholder="Write your message here..."
+        onChange={(event) => {
+          setCurrentmsg(event.target.value);
+        }}
+        onKeyPress={(event) => {
+          event.key === "Enter" && sendMessage1();
+        }}
+        />
+        <button onClick={sendMessage1}>&#9658;</button></div>}
       </div>
     </div>
   )
